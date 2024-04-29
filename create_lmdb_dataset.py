@@ -44,10 +44,18 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
 
     nSamples = len(datalist)
     for i in range(nSamples):
-        imagePath, label = datalist[i].strip('\n').split('.jpg')
-        imagePath += '.jpg'
-        imagePath = os.path.join(inputPath, imagePath)
+        
+        # Extract the image path and label from each line
+        # We use split(' ', 1) to split the line into two parts at the first space
+        imagePath, label = datalist[i].strip().split(' ', 1)
+    
+        # Append '.jpg' back to the imagePath if necessary (if not already present)
+        if not imagePath.endswith('.jpg'):
+            imagePath += '.jpg'
 
+        # Construct the full path to the image
+        imagePath = os.path.join(inputPath, imagePath)
+        
         # # only use alphanumeric data
         # if re.search('[^a-zA-Z0-9]', label):
         #     continue
