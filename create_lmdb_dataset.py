@@ -39,7 +39,7 @@ def createDataset(inputPath, gtFile, outputPath, checkValid=True):
     cache = {}
     cnt = 1
 
-    with open(gtFile, 'r', encoding='utf-8') as data:
+    with open(gtFile, 'r') as data:
         datalist = data.readlines()
 
     nSamples = len(datalist)
